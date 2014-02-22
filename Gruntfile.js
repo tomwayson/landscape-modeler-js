@@ -139,8 +139,91 @@ module.exports = function ( grunt ) {
                   ext: '.js'
                 }
               ]
+            },
+            // needed for single file build
+            single: {
+              files: [
+                // single file build doesn't copy over nls
+                {expand: true, cwd: 'src/app/', src:['nls/**'], dest: 'dist/app/'}//,
+                // r.js doesn't copy background image paths that it traces through url()
+                // {expand: true, cwd: 'src/js/app/wijit/resources/', src:['img/**'], dest: 'dist/js/app/wijit/resources/'}
+              ]
             }
+        },
+
+        requirejs: {
+          // configuration for a multi-file build
+          compile: {
+            options: {
+              baseUrl: '.',
+              appDir: 'src',
+              dir: 'dist',
+              paths: {
+                'esri': 'empty:',
+                'dojo': 'empty:',
+                'dojox': 'empty:',
+                'dijit': 'empty:'
+              },
+              optimize: 'uglify2'
+            }
+          },
+          // configuration for a single-file build
+          single: {
+            options: {
+              baseUrl: 'src',
+              name: 'main',
+              out: 'dist/main-built.js',
+              paths: {
+                'esri': 'empty:',
+                'dojo': 'empty:',
+                'dojox': 'empty:',
+                'dijit': 'empty:',
+                'text': '../../deps/text/text',
+                'domReady': '../../deps/domReady/domReady',
+                'i18n': '../../deps/i18n/i18n'
+              },
+              exclude: ['esri', 'dojo', 'dojox', 'dijit', 'text', 'domReady', 'i18n'],
+              inlineText: true,
+              // NOTE: this does not work
+              // locale: "es",
+              optimize: 'uglify2'
+            }
+          },
+          // used in single file build to optimize static resources such as css images
+          css: {
+            options: {
+              cssIn: 'src/css/app.css',
+              out: 'dist/css/app.css'
+            }
+          }
+        },
+
+        replace: {
+          // needed for inlined templated in single-file build
+          "main-built": {
+            src: ['dist/main-built.js'],
+            dest: 'dist/main-built.js',
+            replacements: [{
+              from: 'text!',
+              to: ''
+            }]
+          },
+          // replace reference to main file for single file build
+          index: {
+            src: ['src/index.html'],
+            dest: 'dist/index.html',
+            replacements: [{
+              from: 'main.js',
+              to: 'main-built.js'
+            },
+            // set locale to test i18n
+            {
+              from: '// locale:',
+              to: 'locale:'
+            }]
+          }
         }
+
 
     });
 
@@ -149,6 +232,9 @@ module.exports = function ( grunt ) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-requirejs');
+    grunt.loadNpmTasks('grunt-text-replace');
+
     /*
      * Register tasks
      */
@@ -180,5 +266,8 @@ module.exports = function ( grunt ) {
     ]);
 
     grunt.registerTask("hint", ["jshint"]);
+
+    grunt.registerTask("compile", ["requirejs:compile"]);
+    grunt.registerTask("single", ["clean", "requirejs:single", "replace", "requirejs:css", "copy"]);
 
 };

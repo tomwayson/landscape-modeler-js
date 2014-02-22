@@ -32,6 +32,8 @@
     "grunt-contrib-uglify": "~0.2.4",
     "grunt-contrib-copy": "~0.4.1",
     "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-requirejs": "~0.4.1",
+    "grunt-text-replace": "~0.3.10",
     "karma-chai": "0.0.2",
     "mocha": "~1.15.1",
     "karma-mocha": "~0.1.1",
