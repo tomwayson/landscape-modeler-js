@@ -31,7 +31,7 @@ define([
   "./WeightedOverlayLayerEditor",
   "./Colormap",
 
-  "dojo/text!./templates/WeightedOverlayModelDesigner.html",
+  "text!./templates/WeightedOverlayModelDesigner.html",
 
   "dijit/form/Button",
   "dijit/form/HorizontalSlider",

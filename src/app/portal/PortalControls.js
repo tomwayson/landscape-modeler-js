@@ -28,8 +28,8 @@ define([
   "./ModelItemEditor",
   "./ModelItemList",
 
-  "dojo/text!./templates/PortalControls.html",
-  "dojo/i18n!../nls/resources",
+  "text!./templates/PortalControls.html",
+  "i18n!../nls/resources",
 
   "dijit/form/Button",
   "dijit/Dialog"

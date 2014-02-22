@@ -34,8 +34,8 @@ define([
 
   "./Chart",
 
-  "dojo/text!./templates/AreaBreakdown.html",
-  "dojo/i18n!../nls/resources",
+  "text!./templates/AreaBreakdown.html",
+  "i18n!../nls/resources",
 
   "dijit/form/Button",
   "dijit/form/Select"

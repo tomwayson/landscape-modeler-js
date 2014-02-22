@@ -22,8 +22,8 @@ define([
   "esri/dijit/BasemapGallery",
   "esri/dijit/Geocoder",
 
-  "dojo/text!./templates/MapControls.html",
-  "dojo/i18n!./nls/resources",
+  "text!./templates/MapControls.html",
+  "i18n!./nls/resources",
 
   "dijit/TitlePane",
   "dijit/layout/ContentPane"

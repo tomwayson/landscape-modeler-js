@@ -20,7 +20,7 @@ define([
   "dijit/_TemplatedMixin",
   "dijit/_WidgetsInTemplateMixin",
 
-  "dojo/text!./templates/ModelItemEditor.html",
+  "text!./templates/ModelItemEditor.html",
 
   "dijit/form/Form",
   "dijit/form/ValidationTextBox",

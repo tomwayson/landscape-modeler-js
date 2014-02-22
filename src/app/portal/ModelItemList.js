@@ -16,7 +16,7 @@ define(["dojo/_base/declare",
     "dojo/on",
     "dojo/string", "dojo/Evented", "dijit/_WidgetBase",
     "dijit/_TemplatedMixin", "dijit/_WidgetsInTemplateMixin",
-    "dojo/text!./templates/ModelItemList.html",
+    "text!./templates/ModelItemList.html",
     "dojo/io-query", "dojo/io/script",
     "dojo/store/Memory", "dgrid/OnDemandGrid", "dgrid/Selection",
     "dijit/form/Select"

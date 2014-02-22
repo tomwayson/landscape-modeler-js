@@ -41,8 +41,8 @@ define([
   "./portal/PortalControls",
   "./reports/chartUtils",
 
-  "dojo/text!./templates/ModelerPane.html",
-  "dojo/i18n!./nls/resources",
+  "text!./templates/ModelerPane.html",
+  "i18n!./nls/resources",
 
   "dijit/form/Button"
 ],

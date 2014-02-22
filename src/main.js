@@ -1,17 +1,18 @@
 require([
   "dojo/dom-style",
+  "dojo/parser",
 
   "esri/arcgis/Portal",
 
   "app/config",
+  "app/Controller",
   "app/portal/OAuthHelper",
 
-  "dojo/domReady!"
+  "domReady!"
 ], function(
-
-  domStyle,
+  domStyle, parser,
   esriPortal,
-  config, OAuthHelper
+  config, Controller, OAuthHelper
 ) {
   // check if signed in
   OAuthHelper.init(config.oauthOptions);
@@ -30,16 +31,12 @@ require([
         domStyle.set("appContainer", "display", "");
 
         // init application
-        require([
-          "dojo/parser",
-
-          "app/Controller",
-
-          "dojo/domReady!"
-        ], function(
-          parser,
-          Controller
-        ) {
+        // require([
+        //   "dojo/domReady!"
+        // ], function(
+        //   parser,
+        //   Controller
+        // ) {
           // some widgets require parse to be called manually
           parser.parse();
           // init app
@@ -55,7 +52,7 @@ require([
             mapControlsNode: "mapControls",
             featurePaneNode: "featureLayerPane"
           });
-        });
+        // });
       }
     });
   } else {

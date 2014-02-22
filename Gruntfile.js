@@ -144,7 +144,13 @@ module.exports = function ( grunt ) {
             single: {
               files: [
                 // single file build doesn't copy over nls
-                {expand: true, cwd: 'src/app/', src:['nls/**'], dest: 'dist/app/'}//,
+                {expand: true, cwd: 'src/app/', src:['nls/**'], dest: 'dist/app/'},
+                // TODO: remove this and use requirejs:css to minify and inline CSS into single file
+                {expand: true, cwd: 'src/lib', src:['bootstrap_v2/**'], dest: 'dist/lib'},
+                {expand: true, cwd: 'src/lib/weighted-overlay-modeler/widget', src:['resources/**'], dest: 'dist/lib/weighted-overlay-modeler/widget'},
+                {expand: true, cwd: 'src/app', src:['css/**'], dest: 'dist/app'},
+                {expand: true, cwd: 'src/app/reports', src:['css/**'], dest: 'dist/app/reports'},
+                {expand: true, cwd: 'src', src: ['proxy*'], dest: 'dist/' }
                 // r.js doesn't copy background image paths that it traces through url()
                 // {expand: true, cwd: 'src/js/app/wijit/resources/', src:['img/**'], dest: 'dist/js/app/wijit/resources/'}
               ]
@@ -178,11 +184,13 @@ module.exports = function ( grunt ) {
                 'dojo': 'empty:',
                 'dojox': 'empty:',
                 'dijit': 'empty:',
-                'text': '../../deps/text/text',
-                'domReady': '../../deps/domReady/domReady',
-                'i18n': '../../deps/i18n/i18n'
+                'dgrid': 'empty:',
+                'modeler': 'lib/weighted-overlay-modeler',
+                'text': '../deps/text/text',
+                'domReady': '../deps/domReady/domReady',
+                'i18n': '../deps/i18n/i18n'
               },
-              exclude: ['esri', 'dojo', 'dojox', 'dijit', 'text', 'domReady', 'i18n'],
+              exclude: ['esri', 'dojo', 'dojox', 'dijit', 'dgrid', 'text', 'domReady', 'i18n'],
               inlineText: true,
               // NOTE: this does not work
               // locale: "es",
@@ -268,6 +276,6 @@ module.exports = function ( grunt ) {
     grunt.registerTask("hint", ["jshint"]);
 
     grunt.registerTask("compile", ["requirejs:compile"]);
-    grunt.registerTask("single", ["clean", "requirejs:single", "replace", "requirejs:css", "copy"]);
+    grunt.registerTask("single", ["clean", "requirejs:single", "replace", /*"requirejs:css", */"copy:single"]);
 
 };

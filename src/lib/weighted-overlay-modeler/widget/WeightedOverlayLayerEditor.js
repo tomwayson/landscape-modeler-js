@@ -31,8 +31,8 @@ define([
 
   "./containerUtils",
 
-  "dojo/text!./templates/RemapRangeEditor.html",
-  "dojo/text!./templates/WeightedOverlayLayerEditor.html",
+  "text!./templates/RemapRangeEditor.html",
+  "text!./templates/WeightedOverlayLayerEditor.html",
 
   "dijit/form/Button",
   "dijit/form/NumberTextBox",

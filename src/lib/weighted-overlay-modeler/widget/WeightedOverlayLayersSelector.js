@@ -30,7 +30,7 @@ define([
 
   "./containerUtils",
 
-  "dojo/text!./templates/WeightedOverlayLayerSelector.html",
+  "text!./templates/WeightedOverlayLayerSelector.html",
 
   "dijit/form/HorizontalSlider",
   "dijit/form/Button"

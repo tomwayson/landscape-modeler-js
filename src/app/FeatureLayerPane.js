@@ -30,8 +30,8 @@ define([
 
   "./reports/AreaBreakdown",
 
-  "dojo/text!./templates/FeatureLayerPane.html",
-  "dojo/i18n!./nls/resources",
+  "text!./templates/FeatureLayerPane.html",
+  "i18n!./nls/resources",
 
   "dijit/TitlePane",
   "dijit/Dialog",
